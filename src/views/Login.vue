@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import * as firebase from "firebase/auth"
+import firebase from "firebase/auth"
 
 export default{
   setup() {
