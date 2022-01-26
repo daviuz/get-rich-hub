@@ -1,33 +1,13 @@
 <template>
-  <section>
+  <div>
     <h1>Login</h1>
     <form @submit.prevent="login">
-      <div>
-        <input type="email" name="email" placeholder="Email">
-      </div>
-      <div>
-        <input type="password" name="password" placeholder="Password">
-      </div>
-      <input type="submit" value="Login">
+      <vs-input v-model="email" placeholder="Email">
+        <template #icon>
+          <i class='bx bx-user'></i>
+        </template>
+      </vs-input>
     </form>
-  </section>
+  </div>
 </template>
 
-<script>
-import firebase from "firebase/auth"
-
-export default{
-  setup() {
-    const login = () => {
-      const provider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithPopup(provider).then(data => {
-        consoe.log(data)
-      })
-    }
-
-    return {
-      login
-    }
-  },
-}
-</script>
