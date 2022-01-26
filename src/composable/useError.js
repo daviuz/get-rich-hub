@@ -8,3 +8,5 @@ const useError = () => {
 
   return { error, setError }
 }
+
+export default useError

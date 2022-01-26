@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import firebaseAuth from '../composable/auth'
+// import firebaseAuth from '../composable/auth'
 
 const routes = [
   {

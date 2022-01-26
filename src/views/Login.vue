@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <h1>Login</h1>
+  <div class="w-40">
+    <h1 class="text-blue-400">Login</h1>
     <form @submit.prevent="login">
-      <vs-input v-model="email" placeholder="Email">
-        <template #icon>
-          <i class='bx bx-user'></i>
-        </template>
-      </vs-input>
+      <font-awesome-icon icon="coffee"></font-awesome-icon>
+      <w-input class="mb2"
+        label="Password"
+        :type="isPassword ? 'password' : 'text'"
+        :inner-icon-right="isPassword ? 'mdi mdi-eye-off' : 'mdi mdi-eye'"
+        @click:inner-icon-right="isPassword = !isPassword">
+      </w-input>
     </form>
   </div>
 </template>

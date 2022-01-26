@@ -29,15 +29,20 @@ const auth = () => {
       email,
       password
     )
+
+    if (credentials.user) {
+      isAuthenticated.value = true;
+      email.value = credentials.user.email;
+    }
   }
 
   const logout = async () => {
     await signOut(firebaseAuth)
     isAuthenticated.value = false
-    user.value = ''
+    email.value = ''
   }
 
-  return { isAuthenticated, user, email, login, register, logout }
+  return { isAuthenticated, email, login, register, logout }
 }
 
 export default auth
