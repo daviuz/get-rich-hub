@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import firebaseAuth from '../composable/auth'
 
 const routes = [
   {
     path: '/',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: () => import('@/views/Login.vue'),
+    meta: { layout: 'AppLayout' }
   },
   {
     path: '/about',
@@ -13,7 +13,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
+    meta: { layout: 'AuthedLayout' }
   }
 ]
 
