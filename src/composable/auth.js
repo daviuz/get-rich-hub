@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { 
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -7,7 +7,9 @@ import {
 import { firebaseAuth } from './firebaseImport'
 
 const isAuthenticated = ref(false)
-const email = ref('')
+const account = reactive({
+  email: ''
+})
 
 const auth = () => {
   const login = async (email, password) => {
@@ -16,10 +18,9 @@ const auth = () => {
       email,
       password
     )
-
     if (credentials.user) {
       isAuthenticated.value = true
-      email.value = credentials.user.email
+      account.email = credentials.user.email
     }
   }
 
@@ -32,17 +33,17 @@ const auth = () => {
 
     if (credentials.user) {
       isAuthenticated.value = true;
-      email.value = credentials.user.email;
+      account.email = credentials.user.email;
     }
   }
 
   const logout = async () => {
     await signOut(firebaseAuth)
     isAuthenticated.value = false
-    email.value = ''
+    account.email = ''
   }
 
-  return { isAuthenticated, email, login, register, logout }
+  return { isAuthenticated, account, login, register, logout }
 }
 
 export default auth
