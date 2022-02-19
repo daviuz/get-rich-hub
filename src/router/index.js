@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store'
 
 const routes = [
   {
@@ -8,19 +9,35 @@ const routes = [
     meta: { layout: 'AppLayout' }
   },
   {
-    path: '/about',
+    path: '/',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
-    meta: { layout: 'AuthedLayout' }
+    component: () => import('@/views/About.vue'),
+    meta: {
+      layout: 'AuthedLayout',
+      requiresAuth: true
+    }
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach(async (to, from, next) => {
+  const currentUser =  await store.dispatch('auth/fetchSessionState')
+
+  if (to.path === '/login' && currentUser) {
+    next('/')
+    return
+  }
+
+  if (to.matched.some(record => record.meta.requiresAuth) && !currentUser) {
+    next('/login')
+    return
+  }
+
+  next()
 })
 
 export default router
