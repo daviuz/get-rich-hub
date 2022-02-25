@@ -31,7 +31,6 @@ const actions = {
       })
       .catch(error => {
         const invalidLogin = 'Incorrect email or password.'
-        console.log(error)
         switch(error.code)         {
           case 'auth/invalid-email':
             return 'Invalid email.'

@@ -1,4 +1,4 @@
-# get-rich-hub
+# Passive Traders
 
 ## Project setup
 ```

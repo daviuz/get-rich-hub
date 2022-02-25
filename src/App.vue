@@ -13,7 +13,7 @@ body {
 }
 
 #app {
-  font-family: Montserrat, Arial, sans-serif;
+  font-family: Montserrat, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
