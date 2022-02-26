@@ -8,11 +8,15 @@
 import Default from './Default'
 import { shallowRef, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { resizeHandler } from '@/composable/layouts/resizeHandler'
+
 export default {
   name: 'AppLayout',
-  setup () {
+  setup() {
     const layout = shallowRef(Default)
     const route = useRoute()
+    const { resizer } = resizeHandler()
+
     watch(
       () => route.meta,
       async meta => {
@@ -24,7 +28,7 @@ export default {
         }
       }
     )
-    return { layout }
+    return { layout, resizer }
   }
 }
 </script>

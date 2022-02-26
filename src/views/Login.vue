@@ -11,25 +11,33 @@
       </div>
     </section>
     <el-form :model="form" class="mt-12 px-10 w-full">
-      <el-input
-        v-model="form.email"
-        type="email"
-        size="large"
-        class="w-full mb-4"
-        placeholder="Email"
-        autocomplete="off"
-        :prefix-icon="Message"
-      />
-      <el-input
-        v-model="form.password"
-        type="password"
-        size="large"
-        class="w-full mb-4"
-        placeholder="Password"
-        autocomplete="off"
-        :prefix-icon="Lock"
-      />
-      <el-button size="large" class="w-full bg-primary p-3 text-white font-bold rounded-md" @click="loginToApp()">LOGIN</el-button>
+      <div class="flex items-center flex-col">
+        <el-input
+          v-model="form.email"
+          type="email"
+          size="large"
+          class="w-full mb-4 max-w-md"
+          placeholder="Email"
+          autocomplete="off"
+          :prefix-icon="Message"
+        />
+        <el-input
+          v-model="form.password"
+          type="password"
+          size="large"
+          class="w-full mb-4 max-w-md"
+          placeholder="Password"
+          autocomplete="off"
+          :prefix-icon="Lock"
+        />
+        <el-button
+          class="w-full bg-primary p-3 text-white font-bold rounded-md max-w-md"
+          size="large"
+          @click="loginToApp()"
+        >
+          LOGIN
+        </el-button>
+      </div>
     </el-form>
   </div>
 </template>
