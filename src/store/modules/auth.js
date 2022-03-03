@@ -1,4 +1,5 @@
 import router from '@/router'
+import { ElMessage } from 'element-plus'
 import { 
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -8,25 +9,29 @@ import {
 import { firebaseAuth } from '../../composable/firebaseImport'
 
 const state = {
-  user: null
+  user_id: null,
+  email: null
 }
 
 const mutations = {
-  SET_USER: (state, user) => {
-    state.user = user
+  SET_USER_ID: (state, user_id) => {
+    state.user_id = user_id
   },
 
-  CLEAR_USER: (state) => {
-    state.user = null
+  SET_EMAIL: (state, user_email) => {
+    state.email = user_email
   }
 }
 
 const actions = {
-  login({ commit }, credentials) {
+  login({ dispatch, commit }, credentials) {
     const { email, password } = credentials
     return signInWithEmailAndPassword(firebaseAuth, email, password)
       .then(() => {
-        commit('SET_USER', firebaseAuth.currentUser)
+        const currentUser = firebaseAuth.currentUser
+        commit('SET_USER_ID', currentUser.uid)
+        commit('SET_EMAIL', currentUser.email)
+        dispatch('profile/fetchUserProfile', null, { root: true })
         router.push('/')
       })
       .catch(error => {
@@ -49,14 +54,20 @@ const actions = {
 
   async logout({ commit }) {
     await signOut(firebaseAuth)
-    commit('CLEAR_USER')
+    commit('SET_USER_ID', null)
+    commit('SET_EMAIL', null)
     router.push('/login')
   },
 
-  fetchSessionState({ commit }) {
+  fetchSessionState({ dispatch, commit }) {
     return new Promise((resolve, reject) => {
       onAuthStateChanged(firebaseAuth, user => {
-        commit('SET_USER', user)
+        const currentUser = firebaseAuth.currentUser
+        commit('SET_USER_ID', currentUser.uid)
+        commit('SET_EMAIL', currentUser.email)
+        if (state.user !== null) {
+          dispatch('profile/fetchUserProfile', null, { root: true })
+        }
         resolve(user)
       })
     })
