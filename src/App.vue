@@ -6,6 +6,23 @@
   </div>
 </template>
 
+<script>
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+export default {
+  setup() {
+    const route = useRoute()
+
+    watch(route, to => {
+        document.title = to.meta.title || "Passive Traders"
+      }
+    )
+  }
+}
+</script>
+
+
 <style>
 body {
   margin: 0;

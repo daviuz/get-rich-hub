@@ -8,10 +8,14 @@ import {
 } from 'firebase/auth'
 import { firebaseAuth } from '../../composable/firebaseImport'
 
-const state = {
-  user_id: null,
-  email: null
+const authDefaultState = () => {
+  return {
+    user_id: null,
+    email: null
+  }
 }
+
+const state = authDefaultState()
 
 const mutations = {
   SET_USER_ID: (state, user_id) => {
@@ -20,6 +24,10 @@ const mutations = {
 
   SET_EMAIL: (state, user_email) => {
     state.email = user_email
+  },
+
+  RESET_STATE: (state) => {
+    Object.assign(state, authDefaultState())
   }
 }
 
@@ -54,8 +62,8 @@ const actions = {
 
   async logout({ commit }) {
     await signOut(firebaseAuth)
-    commit('SET_USER_ID', null)
-    commit('SET_EMAIL', null)
+    commit('RESET_STATE')
+    commit('profile/RESET_STATE', null, { root: true })
     router.push('/login')
   },
 
@@ -63,9 +71,9 @@ const actions = {
     return new Promise((resolve, reject) => {
       onAuthStateChanged(firebaseAuth, user => {
         const currentUser = firebaseAuth.currentUser
-        commit('SET_USER_ID', currentUser.uid)
-        commit('SET_EMAIL', currentUser.email)
-        if (state.user !== null) {
+        if (currentUser) {
+          commit('SET_USER_ID', currentUser.uid)
+          commit('SET_EMAIL', currentUser.email)
           dispatch('profile/fetchUserProfile', null, { root: true })
         }
         resolve(user)
@@ -75,7 +83,7 @@ const actions = {
 }
 
 const getters = {
-  isLoggedIn: state => state.user !== null
+  isLoggedIn: state => state.user_id !== null
 }
 
 export default {

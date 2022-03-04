@@ -6,15 +6,19 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('@/views/Login.vue'),
-    meta: { layout: 'AppLayout' }
+    meta: {
+      layout: 'AppLayout',
+      title: "Login | Passive Traders"
+    }
   },
   {
     path: '/',
-    name: 'About',
-    component: () => import('@/views/About.vue'),
+    name: 'Dashboard',
+    component: () => import('@/views/Dashboard.vue'),
     meta: {
       layout: 'AuthedLayout',
-      requiresAuth: true
+      requiresAuth: true,
+      title: "Dashboard | Passive Traders"
     }
   }
 ]

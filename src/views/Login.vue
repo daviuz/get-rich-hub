@@ -10,10 +10,11 @@
         Easily keep track of your trading bots.
       </div>
     </section>
-    <el-form :model="form" class="mt-12 px-10 w-full">
+    <el-form :model="form" class="mt-12 px-10 w-full" @submit.prevent>
       <div class="flex items-center flex-col">
         <el-input
           v-model="form.email"
+          ref="inputRef"
           type="email"
           size="large"
           class="w-full mb-4 max-w-md"
@@ -29,13 +30,19 @@
           placeholder="Password"
           autocomplete="off"
           :prefix-icon="Lock"
+          @keyup.enter="loginToApp()"
+
         />
         <el-button
-          class="w-full bg-primary p-3 text-white font-bold rounded-md max-w-md"
+          class="w-full p-3 text-white font-bold rounded-md max-w-md"
           size="large"
+          type="primary"
           @click="loginToApp()"
+          :loading-icon="Eleme"
+          :loading="isLoading"
         >
-          LOGIN
+          <template v-if="isLoading">Loggin in...</template>
+          <template v-else>Login</template>
         </el-button>
       </div>
     </el-form>
@@ -43,8 +50,8 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
-import { Message, Lock } from '@element-plus/icons-vue'
+import { reactive, ref } from 'vue'
+import { Message, Lock, Eleme } from '@element-plus/icons-vue'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
 
@@ -52,22 +59,28 @@ export default {
   setup() {
     const store = useStore()
     const form = reactive({ email: '', password: '' }) 
+    const isLoading = ref(false)
+    const inputRef = ref(null)
+  
     const loginToApp = () => {
+      ElMessage.closeAll()
       if(form.email !== '' && form.password !== '') {
+        isLoading.value = true
         store.dispatch('auth/login', form)
           .then(result => {
             if (result !== undefined) {
-              ElMessage.closeAll()
               ElMessage({
                 showClose: true,
                 duration: 0,
                 message: result,
                 type: 'error'
               })
+              form.password = ''
+              inputRef.value.focus()
+              isLoading.value = false
             }
           })
       } else {
-        ElMessage.closeAll()
         ElMessage({
           showClose: true,
           duration: 0,
@@ -77,12 +90,12 @@ export default {
       }
     }
 
-    return { form, Message, Lock, loginToApp }
+    return { form, Message, Lock, Eleme, inputRef, isLoading, loginToApp }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #login-component {
   display: flex;
   flex-direction: column;
@@ -91,15 +104,5 @@ export default {
   background-image: url('~@/assets/images/bg-circles.png');
   background-size: cover;
   height: 100vh;
-}
-
-#error-message {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  top: 10rem;
-  left: 0;
-  right: 0;
-  text-align: center;
 }
 </style>
