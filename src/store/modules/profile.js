@@ -3,8 +3,8 @@ import { db } from '../../composable/firebaseImport'
 
 const profileDefaultState = () => {
   return {
-    firstName: null,
-    lastName: null
+    firstName: '',
+    lastName: ''
   }
 }
 
@@ -44,9 +44,14 @@ const actions = {
   }
 }
 
+const getters = {
+  fullName: state => `${state.firstName} ${state.lastName}`
+}
+
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 }

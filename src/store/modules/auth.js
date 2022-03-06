@@ -83,7 +83,8 @@ const actions = {
 }
 
 const getters = {
-  isLoggedIn: state => state.user_id !== null
+  isLoggedIn: state => state.user_id !== null,
+  email: state => state.email
 }
 
 export default {

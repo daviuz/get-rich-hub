@@ -16,7 +16,6 @@ export default {
     const layout = shallowRef(Default)
     const route = useRoute()
     const { resizer } = resizeHandler()
-
     watch(
       () => route.meta,
       async meta => {

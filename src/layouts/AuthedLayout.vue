@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar.vue'
 
 export default {
   name: "AuthedLayout",
@@ -18,6 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 #authed-layout {
+  padding: 30px;
   margin: 0;
   width: 100%;
   background-image: url('~@/assets/images/bg-triangles.png');
@@ -25,9 +26,7 @@ export default {
   height: 100vh;
 }
 
-#nav {
-  padding: 30px;
-  
+#nav {  
   a {
     font-weight: bold;
     color: #2c3e50;

@@ -34,4 +34,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.enable-disabled div div ul ul .el-dropdown-menu__item.is-disabled div {
+  background-color: #5fad9b;
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 2px 10px;
+  color: white;
+  cursor: initial;
+}
 </style>
