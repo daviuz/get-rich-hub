@@ -29,11 +29,12 @@ export const resizeHandler = () => {
   }
 
   let screenSize = () => {
-    let screen = 'xs'
+    let screen = { size: 'xs', order: 0 }
     let rect = body.getBoundingClientRect()
-    Object.entries(breakPoints).forEach(entry => {
+    Object.entries(breakPoints).forEach((entry, index) => {
       let [key, value] = entry
-      screen = rect.width >= value ? key : screen
+      screen.size = rect.width >= value ? key : screen.size
+      screen.order =  rect.width >= value ? (index + 1) : screen.order
     })
     return screen
   }

@@ -1,5 +1,6 @@
 import { onSnapshot, doc } from 'firebase/firestore'
 import { db } from '../../composable/firebaseImport'
+import { ElMessage } from 'element-plus'
 
 const profileDefaultState = () => {
   return {

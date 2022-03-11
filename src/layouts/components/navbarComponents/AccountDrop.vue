@@ -2,7 +2,7 @@
   <section>
     <el-dropdown id="account-dropdown" trigger="click" popper-class="enable-disabled">
       <span type="primary" class="p-2 flex items-center justify-end">
-        <span class="mr-2 font-bold text-sm name-color">{{ fullName }}</span>
+        <span v-if="screenOrder > 2" class="mr-2 font-bold text-sm name-color">{{ fullName }}</span>
         <avataaars class="w-10" />
       </span>
       <template #dropdown>
@@ -12,12 +12,12 @@
           </el-dropdown-item>
           <el-divider class="my-1" />
           <el-dropdown-item>
-            <el-icon><Operation /></el-icon>
+            <i class="fas fa-sliders mr-2" />
             Settings
           </el-dropdown-item>
           <el-divider class="my-1" />
           <el-dropdown-item @click="logoutFromApp">
-            <el-icon><SwitchButton /></el-icon>
+            <i class="fas fa-right-from-bracket mr-2" />
             Logout
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -30,25 +30,22 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import Avataaars from 'vuejs-avataaars/src/Avataaars.vue'
-import { SwitchButton, Operation } from '@element-plus/icons-vue'
 
 export default {
-  components: {
-    Avataaars,
-    SwitchButton,
-    Operation
-  },
+  components: { Avataaars },
+
   setup() {
     const store = useStore()
     const fullName = computed(() => store.getters['profile/fullName'])
     const email = computed(() => store.getters['auth/email'])
+    const screenOrder = computed(() => store.getters['layout/order'])
 
     const logoutFromApp = () => {
       store.dispatch('auth/logout')
     }
 
     return {
-      fullName, email, logoutFromApp
+      fullName, email, screenOrder, logoutFromApp
     }
   }
 }
