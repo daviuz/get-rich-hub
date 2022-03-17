@@ -79,7 +79,7 @@ const router = createRouter({
 NProgress.configure({ showSpinner: false })
 
 router.beforeEach(async (to, from, next) => {
-  const currentUser =  await store.dispatch('auth/fetchSessionState')
+  const currentUser = await store.dispatch('auth/fetchSessionState')
   NProgress.start()
 
   if (to.path === '/login' && currentUser) {

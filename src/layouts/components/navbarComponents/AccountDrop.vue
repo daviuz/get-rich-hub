@@ -1,6 +1,6 @@
 <template>
   <section>
-    <el-dropdown id="account-dropdown" trigger="click" popper-class="enable-disabled">
+    <el-dropdown id="account-dropdown" trigger="click" popper-class="enable-disabled" class="cursor-pointer">
       <span type="primary" class="p-2 flex items-center justify-end">
         <span v-if="screenOrder > 2" class="mr-2 font-bold text-sm name-color">{{ fullName }}</span>
         <avataaars class="w-10" />
@@ -54,8 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 #navbar {
-  #account-dropdown {
-    cursor: pointer;
+  #account-dropdown :deep {
     transition: all 200ms ease-in-out;
 
     &:hover {
