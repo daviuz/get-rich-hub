@@ -21,6 +21,10 @@ const otherRoutes = [
       layout: 'Default',
       title: "Settings | Passive Traders"
     }
+  },
+  {
+    path: '/:catchAll(.*)',
+    component: () => import('@/views/error-page/404.vue')
   }
 ]
 
@@ -39,7 +43,7 @@ export const routes = [
   {
     path: '/bots',
     name: 'Bots',
-    component: () => import('@/views/Bots.vue'),
+    component: () => import('@/views/bots/Bots.vue'),
     meta: {
       layout: 'AuthedLayout',
       requiresAuth: true,

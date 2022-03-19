@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { VueQueryPlugin } from 'vue-query'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
@@ -23,6 +24,7 @@ const app = createApp(App)
   .use(store)
   .use(router)
   .use(ElementPlus)
+  .use(VueQueryPlugin)
   .component('font-awesome-icon', FontAwesomeIcon)
   .component('AppLayout', AppLayout)
 

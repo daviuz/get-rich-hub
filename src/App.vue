@@ -3,17 +3,19 @@
     <AppLayout>
       <RouterView />
     </AppLayout>
+    <VueQueryDevTools :initialIsOpen="false" />
   </div>
 </template>
 
 <script>
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { VueQueryDevTools } from 'vue-query/devtools'
 
 export default {
+  components: { VueQueryDevTools },
   setup() {
     const route = useRoute()
-
     watch(route, to => {
         document.title = to.meta.title || "Passive Traders"
       }
