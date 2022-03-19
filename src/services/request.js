@@ -10,6 +10,7 @@ service.interceptors.request.use(
   config => {
     const signature = CryptoJS.HmacSHA256(config.url, process.env.VUE_APP_THREEC_SECRET).toString()
     config.headers['APIKEY'] = process.env.VUE_APP_THREEC_API_KEY
+    config.headers['Forced-Mode'] = 'paper'
     config.headers['Signature'] = signature
 
     return config
