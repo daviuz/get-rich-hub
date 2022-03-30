@@ -32,7 +32,7 @@ export const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue'),
+    component: () => import('@/views/home/Home.vue'),
     meta: {
       layout: 'AuthedLayout',
       requiresAuth: true,
@@ -54,7 +54,7 @@ export const routes = [
   {
     path: '/deals',
     name: 'Deals',
-    component: () => import('@/views/Deals.vue'),
+    component: () => import('@/views/deals/Deals.vue'),
     meta: {
       layout: 'AuthedLayout',
       requiresAuth: true,
@@ -65,7 +65,7 @@ export const routes = [
   {
     path: '/history',
     name: 'History',
-    component: () => import('@/views/History.vue'),
+    component: () => import('@/views/history/History.vue'),
     meta: {
       layout: 'AuthedLayout',
       requiresAuth: true,
