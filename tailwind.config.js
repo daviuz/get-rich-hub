@@ -8,6 +8,9 @@ module.exports = {
     extend: {
       colors: {
         primary: '#108787',
+        success: '#95d475',
+        warning: '#E6A23C',
+        danger: '#F56C6C'
       },
       screens: {
         'sm': '640px',

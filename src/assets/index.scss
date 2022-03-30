@@ -3,6 +3,19 @@
     'primary': (
       'base': #108787,
     ),
+  ),
+
+  $text-color: (
+    'primary': white
+  ),
+
+  $card: (
+    'border-color': #263441
+  ),
+
+  $skeleton: (
+    'color': #263441,
+    'to-color': #334758
   )
 );
 

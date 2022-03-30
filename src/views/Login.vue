@@ -1,7 +1,7 @@
 <template>
   <div id="login-component" class="w-full py-10 px-4">
     <section class="flex justify-center items-center p-4 w-full mb-4">
-      <img src="@/assets/images/logo.svg" class="w-20 inline" />
+      <img src="@/assets/images/logo.svg" class="w-16 mr-4 inline" />
       <h1 class="font-bold text-3xl">Passive Traders</h1>
     </section>
     <section class="sm:block text-center w-full">

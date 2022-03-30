@@ -10,7 +10,7 @@ const otherRoutes = [
     component: () => import('@/views/Login.vue'),
     meta: {
       layout: 'Default',
-      title: "Login | Passive Traders"
+      title: "Login"
     }
   },
   {
@@ -19,7 +19,7 @@ const otherRoutes = [
     component: () => import('@/views/Settings.vue'),
     meta: {
       layout: 'Default',
-      title: "Settings | Passive Traders"
+      title: "Settings"
     }
   },
   {
@@ -36,7 +36,7 @@ export const routes = [
     meta: {
       layout: 'AuthedLayout',
       requiresAuth: true,
-      title: "Home | Passive Traders",
+      title: "Home",
       icon: 'fa-solid fa-home-lg-alt'
     }
   },
@@ -47,7 +47,7 @@ export const routes = [
     meta: {
       layout: 'AuthedLayout',
       requiresAuth: true,
-      title: "Bots | Passive Traders",
+      title: "Bots",
       icon: 'fa-solid fa-robot'
     }
   },
@@ -58,7 +58,7 @@ export const routes = [
     meta: {
       layout: 'AuthedLayout',
       requiresAuth: true,
-      title: "Deals | Passive Traders",
+      title: "Deals",
       icon: 'fa-solid fa-money-bill-wave'
     }
   },
@@ -69,7 +69,7 @@ export const routes = [
     meta: {
       layout: 'AuthedLayout',
       requiresAuth: true,
-      title: "History | Passive Traders",
+      title: "History",
       icon: 'fa-solid fa-clock-rotate-left'
     }
   }

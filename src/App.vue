@@ -16,10 +16,17 @@ export default {
   components: { VueQueryDevTools },
   setup() {
     const route = useRoute()
+    const appName = 'Passive Traders'
+
     watch(route, to => {
-        document.title = to.meta.title || "Passive Traders"
+        document.title = appTitle(to)
       }
     )
+
+    const appTitle = to => {
+      const routeTitle = to.meta.title
+      return routeTitle ? `${to.meta.title} | ${appName}` : appName
+    }
   }
 }
 </script>
@@ -29,7 +36,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 #app {

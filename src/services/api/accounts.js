@@ -1,9 +1,9 @@
 import request from '@/services/request'
 
 export default {
-  getAllBots(accountId) {
+  getAccountDetails(accountId) {
     return request({
-      url: `${process.env.VUE_APP_THREEC_URL_VERSION}/bots?account_id=${accountId}`,
+      url: `${process.env.VUE_APP_THREEC_URL_VERSION}/accounts/${accountId}`,
       method: 'get'
     })
   }
