@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import Navbar from './components/Navbar.vue'
 
@@ -21,6 +21,10 @@ export default {
   setup() {
     const store = useStore()
     const screenOrder = computed(() => store.getters['layout/order'])
+
+    onMounted(() => {
+      store.dispatch('settings/fetchBlackListedPairs')
+    })
 
     return  { screenOrder }
   }
